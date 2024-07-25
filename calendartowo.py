@@ -21,14 +21,14 @@ def get_meetings_from_image(image_path):
     }
    
     payload = {
-        "model": "gpt-4o-mini",
+        "model": "gpt-4o",
         "messages": [
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Please list all the meetings in this calendar screenshot. For each meeting, provide the date, start time, end time, and title in the format: 'Date, Start Time - End Time, Title'"
+                        "text": "Please list all the meetings in this calendar screenshot. For each meeting, provide the date, exact start time, exact end time, and title in the format: 'Date, Start Time - End Time, Title'"
                     },
                     {
                         "type": "image_url",
@@ -39,7 +39,7 @@ def get_meetings_from_image(image_path):
                 ]
             }
         ],
-        "max_tokens": 1000
+        "max_tokens": 2000
     }
    
     response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
@@ -88,7 +88,7 @@ def match_meetings_to_workorders(meetings, workorders):
                 "content": f"Given these meetings:\n{meetings}\n\nAnd these workorders:\n{workorders}\n\nPlease match each meeting with the most logical workorder. If there's no matching workorder, use null for the workorder value. Include the start and end times for each meeting in ISO format."
             }
         ],
-        "max_tokens": 1000
+        "max_tokens": 2000
     }
    
     try:
@@ -116,10 +116,10 @@ def match_meetings_to_workorders(meetings, workorders):
             # Parse the JSON content
             matched_data = json.loads(json_content)
             
-            # Filter out entries with null workorder values and calculate meeting duration
+            # Calculate meeting duration for all entries, including those with null workorder values
             matched_data = [
                 {**item, 'duration': calculate_meeting_duration(item['start_time'], item['end_time'])}
-                for item in matched_data if item['workorder'] is not None
+                for item in matched_data
             ]
             
             return matched_data
@@ -146,14 +146,14 @@ def match_meetings_to_workorders(meetings, workorders):
 
 def display_results(matched_data):
     if not matched_data:
-        print("\nNo matches found between meetings and work orders.")
+        print("\nNo meetings found.")
         return
     
     print("\nMatched Meetings and Work Orders:")
     print("----------------------------------")
     for item in matched_data:
         print(f"Meeting: {item['meeting']}")
-        print(f"Work Order: {item['workorder']}")
+        print(f"Work Order: {item['workorder'] if item['workorder'] is not None else 'No matching work order'}")
         print(f"Duration: {item['duration']} hours")
         print("----------------------------------")
 
@@ -166,7 +166,7 @@ def export_to_csv(matched_data, output_file):
         for item in matched_data:
             writer.writerow({
                 'meeting': item['meeting'],
-                'workorder': item['workorder'],
+                'workorder': item['workorder'] if item['workorder'] is not None else '',
                 'duration': item['duration']
             })
 
