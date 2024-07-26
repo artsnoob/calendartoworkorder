@@ -4,8 +4,8 @@ This Python script automates the process of matching calendar meetings with work
 
 ## Versions
 
-calendartowo.py: Uses GPT API to scan a screenshot of a calendar to OCR the meeting names.
-OWAtoWO.py: Scrapes the calendar events straight from OWA. Much more precise, and skips the first API step.
+- calendartowo.py: Uses GPT API to scan a screenshot of a calendar to OCR the meeting names.
+- OWAtoWO.py: Scrapes the calendar events straight from OWA. Much more precise, and skips the first API step.
 
 ## Features
 
