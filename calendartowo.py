@@ -28,7 +28,7 @@ def get_meetings_from_image(image_path):
                 "content": [
                     {
                         "type": "text",
-                        "text": "Please list all the meetings in this calendar screenshot. For each meeting, provide the date, exact start time, exact end time, and title in the format: 'Date, Start Time - End Time, Title'"
+                        "text": "Please list all the meetings in this calendar screenshot. For each meeting, provide the date, exact start time, exact end time, and title in the format: 'YYYY-MM-DD, HH:MM - HH:MM, Title'"
                     },
                     {
                         "type": "image_url",
@@ -39,7 +39,7 @@ def get_meetings_from_image(image_path):
                 ]
             }
         ],
-        "max_tokens": 2000
+        "max_tokens": 3000
     }
    
     response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
@@ -85,10 +85,10 @@ def match_meetings_to_workorders(meetings, workorders):
             },
             {
                 "role": "user",
-                "content": f"Given these meetings:\n{meetings}\n\nAnd these workorders:\n{workorders}\n\nPlease match each meeting with the most logical workorder. If there's no matching workorder, use null for the workorder value. Include the start and end times for each meeting in ISO format."
+                "content": f"Given these meetings:\n{meetings}\n\nAnd these workorders:\n{workorders}\n\nPlease match each meeting with the most logical workorder. If there's no matching workorder, use null for the workorder value. Include the exact start and end times for each meeting in ISO format."
             }
         ],
-        "max_tokens": 2000
+        "max_tokens": 3000
     }
    
     try:
@@ -199,7 +199,7 @@ def main():
     # Match meetings to workorders
     print("\nMatching meetings to work orders...")
     matched_data = match_meetings_to_workorders(formatted_meetings, workorders)
-   
+    
     # Display results
     display_results(matched_data)
 
