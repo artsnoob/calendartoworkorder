@@ -4,7 +4,7 @@ This project combines calendar event scraping from Outlook Web App (OWA) with wo
 
 ## Versions
 
-- calendartowo.py: Uses GPT API to scan a screenshot of a calendar to OCR the meeting names.
+- CalendarToWO.py: Uses GPT API to scan a screenshot of a calendar to OCR the meeting names.
 - OWAtoWO.py: Scrapes the calendar events straight from OWA. Much more precise, and skips the first API step.
 
 ## Features
