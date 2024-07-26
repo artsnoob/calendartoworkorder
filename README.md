@@ -2,6 +2,9 @@
 
 This Python script automates the process of matching calendar meetings with work orders. It uses OpenAI's GPT-4 model to extract meeting information from calendar screenshots and match them with relevant work orders.
 
+calendartowo.py: Uses GPT API to scan a screenshot of a calendar to OCR the meeting names.
+OWAtoWO.py: Scrapes the calendar events straight from OWA. Much more precise, and skips the first API step.
+
 ## Features
 
 - Extract meeting information from calendar screenshots using OpenAI's GPT-4 vision model
