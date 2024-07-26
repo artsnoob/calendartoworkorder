@@ -59,16 +59,3 @@ The script generates two types of output:
 
 1. Console output: Displays the extracted meetings, parsed work orders, and matched data.
 2. CSV file (`meetingorder.csv`): Contains the matched meetings, work orders, and meeting durations.
-
-## Limitations
-
-- The accuracy of meeting extraction depends on the quality and clarity of the calendar screenshot.
-- The matching process relies on the GPT-4 model's understanding of the context and may not always provide perfect matches.
-
-## Contributing
-
-Contributions, issues, and feature requests are welcome. Feel free to check [issues page](https://github.com/yourusername/meeting-workorder-matcher/issues) if you want to contribute.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
