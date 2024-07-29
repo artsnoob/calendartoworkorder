@@ -25,7 +25,7 @@ Before you begin, ensure you have met the following requirements:
 
 1. Clone this repository:
    ```
-   git clone https://github.com/yourusername/calendar-workorder-matching.git
+   git clone https://github.com/artsnoob/calendartoworkorder.git
    cd calendar-workorder-matching
    ```
 
