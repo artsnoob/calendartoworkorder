@@ -45,7 +45,7 @@ Before you begin, ensure you have met the following requirements:
 
 2. Run the script:
    ```
-   python calendar_workorder_matching.py
+   python owatowo.py
    ```
 
 3. The script will open a Chrome browser window and navigate to Outlook Web App.
