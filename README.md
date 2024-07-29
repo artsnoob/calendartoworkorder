@@ -34,7 +34,7 @@ Before you begin, ensure you have met the following requirements:
    pip install selenium webdriver_manager requests
    ```
 
-3. Create a `config.py` file in the project directory and add your OpenAI API key:
+3. Replace your OpenAI API key in the OwaToWO.py file.:
    ```python
    API_KEY = "your_openai_api_key_here"
    ```
